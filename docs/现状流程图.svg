@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="700" viewBox="0 0 1240 700" font-family="Microsoft YaHei, PingFang SC, Hiragino Sans GB, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4A6B57"/>
+    </marker>
+    <marker id="arrowDashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B4741E"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="700" fill="#FFFFFF"/>
+
+  <text x="56" y="46" font-size="21" font-weight="700" fill="#1F2A24">现状流程图 · 跨区域员工入职材料协同</text>
+  <text x="56" y="70" font-size="12.5" fill="#5B6B60">上海外服（集团）有限公司 ｜ 模块 dlg-fsg-onboarding ｜ 阶段：现场调研 ｜ 合成演练资料</text>
+  <line x1="56" y1="84" x2="1224" y2="84" stroke="#DCE5DC" stroke-width="1"/>
+
+  <!-- ============ 主流程 ============ -->
+  <text x="56" y="112" font-size="13" font-weight="700" fill="#2F6B4F">正常路径（实线）</text>
+
+  <!-- N1 -->
+  <rect x="56" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="68" y="148" font-size="11" fill="#6B7C70">N1</text>
+  <text x="92" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">触发</text>
+  <text x="68" y="168" font-size="11.5" fill="#42544A">客户提交入职服务单</text>
+  <text x="68" y="184" font-size="11.5" fill="#42544A">输入：员工材料包</text>
+
+  <!-- N2 -->
+  <rect x="256" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <rect x="366" y="118" width="60" height="17" rx="8.5" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="396" y="130" font-size="9.5" fill="#2F4F8A" text-anchor="middle">人工判断①</text>
+  <text x="268" y="148" font-size="11" fill="#6B7C70">N2</text>
+  <text x="292" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">区域核对</text>
+  <text x="268" y="168" font-size="11.5" fill="#42544A">核对材料完整性</text>
+  <text x="268" y="184" font-size="11.5" fill="#42544A">判断清单版本是否有效</text>
+
+  <!-- N3 -->
+  <rect x="456" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="468" y="148" font-size="11" fill="#6B7C70">N3</text>
+  <text x="492" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">补件</text>
+  <text x="468" y="168" font-size="11.5" fill="#42544A">通知缺件并跟踪</text>
+  <text x="468" y="184" font-size="11.5" fill="#42544A">输出：补件日志</text>
+
+  <!-- N4 -->
+  <rect x="656" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <rect x="766" y="118" width="60" height="17" rx="8.5" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="796" y="130" font-size="9.5" fill="#2F4F8A" text-anchor="middle">人工判断②</text>
+  <text x="668" y="148" font-size="11" fill="#6B7C70">N4</text>
+  <text x="692" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">交接</text>
+  <text x="668" y="168" font-size="11.5" fill="#42544A">移交责任</text>
+  <text x="668" y="184" font-size="11.5" fill="#42544A">记录版本与未结项</text>
+
+  <!-- N5 -->
+  <rect x="856" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <rect x="966" y="118" width="60" height="17" rx="8.5" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="996" y="130" font-size="9.5" fill="#2F4F8A" text-anchor="middle">人工判断③</text>
+  <text x="868" y="148" font-size="11" fill="#6B7C70">N5</text>
+  <text x="892" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">服务确认</text>
+  <text x="868" y="168" font-size="11.5" fill="#42544A">正式结论由授权人签字</text>
+  <text x="868" y="184" font-size="11.5" fill="#42544A">模型无审批权</text>
+
+  <!-- N6 -->
+  <rect x="1056" y="126" width="176" height="66" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="1068" y="148" font-size="11" fill="#6B7C70">N6</text>
+  <text x="1092" y="148" font-size="13.5" font-weight="700" fill="#1F2A24">归档与审计</text>
+  <text x="1068" y="168" font-size="11.5" fill="#42544A">原始版本·修订原因</text>
+  <text x="1068" y="184" font-size="11.5" fill="#42544A">确认人可追溯</text>
+
+  <!-- 连接线 -->
+  <line x1="232" y1="159" x2="252" y2="159" stroke="#4A6B57" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="432" y1="159" x2="452" y2="159" stroke="#4A6B57" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="632" y1="159" x2="652" y2="159" stroke="#4A6B57" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="832" y1="159" x2="852" y2="159" stroke="#4A6B57" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="1032" y1="159" x2="1052" y2="159" stroke="#4A6B57" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- 执行角色 -->
+  <text x="144" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">客户协同代表 / 一线</text>
+  <text x="344" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">林亦舟 · 一线服务专员</text>
+  <text x="544" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">唐映秋 · 流程协调员</text>
+  <text x="744" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">唐映秋 · 流程协调员</text>
+  <text x="944" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">业务负责人 · 授权人</text>
+  <text x="1144" y="208" font-size="11" fill="#7A8B80" text-anchor="middle">傅景 · 审核负责人</text>
+
+  <!-- 系统层 -->
+  <rect x="56" y="222" width="1168" height="26" rx="6" fill="#F7F8F7" stroke="#DCE5DC" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="68" y="239" font-size="11.5" fill="#5B6B60">支撑系统：内部服务台 · 业务台账 · 文件库（无统一关联编号）　｜　现场并行：企业群消息先行处理、事后回填表格</text>
+
+  <!-- ============ 异常路径 ============ -->
+  <text x="56" y="278" font-size="13" font-weight="700" fill="#B4741E">异常路径（虚线为返工 / 异常分支）</text>
+
+  <rect x="56" y="290" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="70" y="310" font-size="11.5" font-weight="700" fill="#8A5A16">E1　版本不一致 → 反复催件</text>
+  <text x="70" y="328" font-size="11" fill="#6B5A44">回到 N2 重新核对，一线逐个确认对方手里是哪一版（f10）</text>
+
+  <rect x="452" y="290" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="466" y="310" font-size="11.5" font-weight="700" fill="#8A5A16">E2　交接只写「已处理」→ 挂账</text>
+  <text x="466" y="328" font-size="11" fill="#6B5A44">N4 缺最新版本 / 未结项 / 截止时间，责任无法归属（f23）</text>
+
+  <rect x="848" y="290" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="862" y="310" font-size="11.5" font-weight="700" fill="#8A5A16">E3　回填时间 ≠ 发生时间</text>
+  <text x="862" y="328" font-size="11" fill="#6B5A44">工时按回填时间统计会虚高，须取业务发生时间（f13 / f34）</text>
+
+  <rect x="56" y="350" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="70" y="370" font-size="11.5" font-weight="700" fill="#8A5A16">E4　无法确认版本或关键字段</text>
+  <text x="70" y="388" font-size="11" fill="#6B5A44">强制进入人工队列，必要时暂停试点，不得默认通过（f44）</text>
+
+  <rect x="452" y="350" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="466" y="370" font-size="11.5" font-weight="700" fill="#8A5A16">E5　系统读取失败</text>
+  <text x="466" y="388" font-size="11" fill="#6B5A44">保留上次快照并标记时间，转人工核查，不编造状态（f35）</text>
+
+  <rect x="848" y="350" width="356" height="50" rx="8" fill="#FDF7EE" stroke="#DDB680" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="862" y="370" font-size="11.5" font-weight="700" fill="#8A5A16">E6　客户投诉 / 模板口径冲突</text>
+  <text x="862" y="388" font-size="11" fill="#6B5A44">登记原始问题与版本；统一模板 vs 地域差异未裁决（f50 / f54）</text>
+
+  <!-- ============ 瓶颈与责任人 ============ -->
+  <text x="56" y="436" font-size="13" font-weight="700" fill="#2F6B4F">瓶颈与责任人</text>
+
+  <rect x="56" y="448" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="70" y="467" font-size="11.5" font-weight="700" fill="#1F2A24">B1　版本判定与责任归属</text>
+  <text x="70" y="484" font-size="11" fill="#5B6B60">责任人：林亦舟 · 一线服务专员</text>
+
+  <rect x="452" y="448" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="466" y="467" font-size="11.5" font-weight="700" fill="#1F2A24">B2　交接记录完整性</text>
+  <text x="466" y="484" font-size="11" fill="#6B5A60">责任人：唐映秋 · 项目流程协调员</text>
+
+  <rect x="848" y="448" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="862" y="467" font-size="11.5" font-weight="700" fill="#1F2A24">B3　工时口径（回填 vs 发生）</text>
+  <text x="862" y="484" font-size="11" fill="#5B6B60">责任人：林亦舟 + 秦芮</text>
+
+  <rect x="56" y="502" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="70" y="521" font-size="11.5" font-weight="700" fill="#1F2A24">B4　缺件清单可读性</text>
+  <text x="70" y="538" font-size="11" fill="#5B6B60">责任人：林亦舟（需要一页清单 + 来源位置）</text>
+
+  <rect x="452" y="502" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="466" y="521" font-size="11.5" font-weight="700" fill="#1F2A24">B5　无统一关联编号</text>
+  <text x="466" y="538" font-size="11" fill="#5B6B60">责任人：秦芮 · 数字化工程师</text>
+
+  <rect x="848" y="502" width="356" height="46" rx="8" fill="#FFFFFF" stroke="#C8D6C8" stroke-width="1"/>
+  <text x="862" y="521" font-size="11.5" font-weight="700" fill="#1F2A24">B6　复核留痕缺失被退回</text>
+  <text x="862" y="538" font-size="11" fill="#5B6B60">责任人：傅景 · 审核与质量负责人</text>
+
+  <!-- ============ 人工判断点 ============ -->
+  <text x="56" y="584" font-size="13" font-weight="700" fill="#2F4F8A">只能由人完成的判断（不可自动化）</text>
+
+  <rect x="56" y="596" width="224" height="42" rx="8" fill="#F2F6FC" stroke="#AFC3E2" stroke-width="1"/>
+  <text x="168" y="613" font-size="11" fill="#2F4F8A" text-anchor="middle">① 清单版本是否有效</text>
+  <text x="168" y="629" font-size="10.5" fill="#5B6B80" text-anchor="middle">规则判不了需人工裁定</text>
+
+  <rect x="292" y="596" width="224" height="42" rx="8" fill="#F2F6FC" stroke="#AFC3E2" stroke-width="1"/>
+  <text x="404" y="613" font-size="11" fill="#2F4F8A" text-anchor="middle">② 责任归属判定</text>
+  <text x="404" y="629" font-size="10.5" fill="#5B6B80" text-anchor="middle">交接断点需人证</text>
+
+  <rect x="528" y="596" width="224" height="42" rx="8" fill="#F2F6FC" stroke="#AFC3E2" stroke-width="1"/>
+  <text x="640" y="613" font-size="11" fill="#2F4F8A" text-anchor="middle">③ 正式结论确认</text>
+  <text x="640" y="629" font-size="10.5" fill="#5B6B80" text-anchor="middle">授权人签字，模型无审批权</text>
+
+  <rect x="764" y="596" width="224" height="42" rx="8" fill="#F2F6FC" stroke="#AFC3E2" stroke-width="1"/>
+  <text x="876" y="613" font-size="11" fill="#2F4F8A" text-anchor="middle">④ 兜底转人工 / 暂停</text>
+  <text x="876" y="629" font-size="10.5" fill="#5B6B80" text-anchor="middle">风险不可控时由审核方叫停</text>
+
+  <rect x="1000" y="596" width="224" height="42" rx="8" fill="#F2F6FC" stroke="#AFC3E2" stroke-width="1"/>
+  <text x="1112" y="613" font-size="11" fill="#2F4F8A" text-anchor="middle">⑤ 对外承诺</text>
+  <text x="1112" y="629" font-size="10.5" fill="#5B6B80" text-anchor="middle">客户侧口径由业务人员确认</text>
+
+  <line x1="56" y1="656" x2="1224" y2="656" stroke="#DCE5DC" stroke-width="1"/>
+  <text x="56" y="676" font-size="10.5" fill="#8A9A8F">图例：实线 = 正常路径　虚线 = 异常 / 返工分支　蓝色标签 = 人工判断点　fXX = 访谈事实编号（对应《访谈记录.md》）</text>
+  <text x="56" y="692" font-size="10.5" fill="#8A9A8F">数据口径：合成演练；每月 800 单 / 平均补件 2.4 次为虚构样本，不代表企业真实经营数据。真实单量与耗时待测。</text>
+</svg>

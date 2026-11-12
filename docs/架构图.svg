@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="880" viewBox="0 0 1240 880" font-family="Microsoft YaHei, PingFang SC, Hiragino Sans GB, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4A6B57"/>
+    </marker>
+    <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2F4F8A"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="880" fill="#FFFFFF"/>
+
+  <text x="56" y="44" font-size="21" font-weight="700" fill="#1F2A24">方案设计 · 系统架构与数据边界</text>
+  <text x="56" y="68" font-size="12.5" fill="#5B6B60">上海外服（集团）有限公司 · 跨区域员工入职材料协同 ｜ 最小试点：单批次缺件清单候选生成 + 人工复核 ｜ 合成演练资料</text>
+  <line x1="56" y1="82" x2="1184" y2="82" stroke="#DCE5DC" stroke-width="1"/>
+
+  <text x="252" y="102" font-size="11" font-weight="700" fill="#6B7C70">职责与关键约束</text>
+  <text x="910" y="102" font-size="11" font-weight="700" fill="#8A5A18">失效 / 越权时的行为</text>
+
+  <!-- ===== L0 接入层 ===== -->
+  <rect x="56" y="116" width="180" height="72" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="70" y="136" font-size="10.5" fill="#6B7C70">L0</text>
+  <text x="98" y="137" font-size="13.5" font-weight="700" fill="#1F2A24">接入层</text>
+  <text x="70" y="158" font-size="11" fill="#42544A">FastAPI · 鉴权 · 限流</text>
+  <text x="70" y="176" font-size="11" fill="#42544A">统一响应封装</text>
+
+  <rect x="252" y="116" width="640" height="72" rx="8" fill="#FFFFFF" stroke="#DCE5DC" stroke-width="1.2"/>
+  <text x="268" y="140" font-size="11.5" fill="#2B3A31">角色从会话或请求头解析，服务端校验，不信任前端传参</text>
+  <text x="268" y="162" font-size="11.5" fill="#2B3A31">全部接口返回 {ok, data, error{code, msg}}，无例外</text>
+  <text x="268" y="180" font-size="10.5" fill="#7C8C82">依据：权限设计要求 · f22 模型无审批权限</text>
+
+  <rect x="908" y="116" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="140" font-size="11" fill="#8A5A18">越权 → FORBIDDEN，报错不含资源内容</text>
+  <text x="922" y="160" font-size="11" fill="#8A5A18">与存在性；限流 → RATE_LIMITED</text>
+
+  <line x1="146" y1="188" x2="146" y2="204" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L1 数据接入层 ===== -->
+  <rect x="56" y="204" width="180" height="72" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="70" y="224" font-size="10.5" fill="#6B7C70">L1</text>
+  <text x="98" y="225" font-size="13.5" font-weight="700" fill="#1F2A24">数据接入层</text>
+  <text x="70" y="246" font-size="11" fill="#42544A">只读导出 → 快照</text>
+  <text x="70" y="264" font-size="11" fill="#42544A">双时间戳落库</text>
+
+  <rect x="252" y="204" width="640" height="72" rx="8" fill="#FFFFFF" stroke="#DCE5DC" stroke-width="1.2"/>
+  <text x="268" y="228" font-size="11.5" fill="#2B3A31">导入脱敏只读导出，同时记录业务发生时间与系统接收时间</text>
+  <text x="268" y="250" font-size="11.5" fill="#2B3A31">回填时间不得作为发生时间；过期来源不得覆盖已确认新版本</text>
+  <text x="268" y="268" font-size="10.5" fill="#7C8C82">依据：f13 现场先群消息后回填 · f34 双时间与版本优先级 · f32 只读导出</text>
+
+  <rect x="908" y="204" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="228" font-size="11" fill="#8A5A18">读取失败 → 保留上次快照并标记</text>
+  <text x="922" y="248" font-size="11" fill="#8A5A18">snapshot_at，提示人工核查</text>
+  <text x="922" y="268" font-size="10.5" fill="#A2762F">不推算缺失值 · 不编造最新状态</text>
+
+  <line x1="146" y1="276" x2="146" y2="292" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L2 版本与口径层 ===== -->
+  <rect x="56" y="292" width="180" height="72" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="70" y="312" font-size="10.5" fill="#6B7C70">L2</text>
+  <text x="98" y="313" font-size="13.5" font-weight="700" fill="#1F2A24">版本与口径层</text>
+  <text x="70" y="334" font-size="11" fill="#42544A">有效版本判定</text>
+  <text x="70" y="352" font-size="11" fill="#42544A">五字段口径对齐</text>
+
+  <rect x="252" y="292" width="640" height="72" rx="8" fill="#FFFFFF" stroke="#DCE5DC" stroke-width="1.2"/>
+  <text x="268" y="316" font-size="11.5" fill="#2B3A31">按「版本有效期 + 确认状态」判定有效版本；区分版本冲突与责任冲突</text>
+  <text x="268" y="338" font-size="11.5" fill="#2B3A31">对齐员工演练编号 / 客户编号 / 服务地区 / 生效日期 / 规则版本；缺失值与未确认值分开</text>
+  <text x="268" y="356" font-size="10.5" fill="#7C8C82">依据：f24 不靠文件名猜版本 · f25 冲突分两类 · f31 五字段 · f30 无统一编号不拼合</text>
+
+  <rect x="908" y="292" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="316" font-size="11" fill="#8A5A18">判定不唯一 → 不做裁决，直接进</text>
+  <text x="922" y="336" font-size="11" fill="#8A5A18">人工队列；无编号 → UNLINKED</text>
+  <text x="922" y="356" font-size="10.5" fill="#A2762F">不允许强行拼合</text>
+
+  <line x1="146" y1="364" x2="146" y2="380" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L3 规则校验层 ===== -->
+  <rect x="56" y="380" width="180" height="72" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="70" y="400" font-size="10.5" fill="#6B7C70">L3</text>
+  <text x="98" y="401" font-size="13.5" font-weight="700" fill="#1F2A24">规则校验层</text>
+  <text x="70" y="422" font-size="11" fill="#42544A">确定性检查</text>
+  <text x="70" y="440" font-size="11" fill="#42544A">可复现 · 可审计</text>
+
+  <rect x="252" y="380" width="640" height="72" rx="8" fill="#FFFFFF" stroke="#DCE5DC" stroke-width="1.2"/>
+  <text x="268" y="404" font-size="11.5" fill="#2B3A31">重复编号 / 空时间 / 版本断链 / 单位差异检查；问题记录保留原行</text>
+  <text x="268" y="426" font-size="11.5" fill="#2B3A31">此层不调用模型：可判定的部分必须由规则给出确定结论</text>
+  <text x="268" y="444" font-size="10.5" fill="#7C8C82">依据：f33 四类检查与保留原行 · f31 缺失值与未确认值区分</text>
+
+  <rect x="908" y="380" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="404" font-size="11" fill="#8A5A18">规则异常 → RULE_FAILED，清单</text>
+  <text x="922" y="424" font-size="11" fill="#8A5A18">不输出；禁止降级为默认通过</text>
+  <text x="922" y="444" font-size="10.5" fill="#A2762F">不允许静默跳过</text>
+
+  <line x1="146" y1="452" x2="146" y2="468" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L4 模型候选层 ===== -->
+  <rect x="56" y="468" width="180" height="72" rx="10" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1.4"/>
+  <text x="70" y="488" font-size="10.5" fill="#41577F">L4</text>
+  <text x="98" y="489" font-size="13.5" font-weight="700" fill="#233A63">模型候选层</text>
+  <text x="70" y="510" font-size="11" fill="#3A4F73">本地 ollama · 不出网</text>
+  <text x="70" y="528" font-size="11" fill="#3A4F73">只出候选 + 来源</text>
+
+  <rect x="252" y="468" width="640" height="72" rx="8" fill="#F7F9FD" stroke="#C3D2E8" stroke-width="1.2"/>
+  <text x="268" y="492" font-size="11.5" fill="#233A63">只处理规则判不了的部分；知识库检索支撑来源定位，输入为脱敏快照</text>
+  <text x="268" y="514" font-size="11.5" fill="#233A63">只输出「缺哪项 + 来自哪份材料 + 第几项」，不做判定、不出结论、无审批权</text>
+  <text x="268" y="532" font-size="10.5" fill="#5C7090">依据：f50 命名与口径不一致 · f15 要一页清单而非长摘要 · f22 模型无审批权 · f41 禁止自动定论</text>
+
+  <rect x="908" y="468" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="492" font-size="11" fill="#8A5A18">模型不可用 → 降级 rule_only，</text>
+  <text x="922" y="512" font-size="11" fill="#8A5A18">清单注明「未生成语义候选」</text>
+  <text x="922" y="532" font-size="10.5" fill="#A2762F">无来源的候选不进清单主表</text>
+
+  <line x1="146" y1="540" x2="146" y2="556" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L5 人工复核层 ===== -->
+  <rect x="56" y="556" width="180" height="72" rx="10" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1.4"/>
+  <text x="70" y="576" font-size="10.5" fill="#41577F">L5</text>
+  <text x="98" y="577" font-size="13.5" font-weight="700" fill="#233A63">人工复核层</text>
+  <text x="70" y="598" font-size="11" fill="#3A4F73">复核队列 · 交接记录</text>
+  <text x="70" y="616" font-size="11" fill="#3A4F73">正式确认</text>
+
+  <rect x="252" y="556" width="640" height="72" rx="8" fill="#F7F9FD" stroke="#C3D2E8" stroke-width="1.2"/>
+  <text x="268" y="580" font-size="11.5" fill="#233A63">复核队列与交接记录：接收人 / 最新版本 / 未结项 / 截止时间，四项缺一即不合规</text>
+  <text x="268" y="602" font-size="11.5" fill="#233A63">系统建议不得覆盖原值，不得省略确认；正式结论只能由授权人员出具</text>
+  <text x="268" y="620" font-size="10.5" fill="#5C7090">依据：f20 交接记录 · f23 不能只发「已处理」 · f14 不覆盖原值 · f41 禁止代签 · f44 转人工</text>
+
+  <rect x="908" y="556" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="580" font-size="11" fill="#8A5A18">复核超时 → 升级提醒，不自动</text>
+  <text x="922" y="600" font-size="11" fill="#8A5A18">通过；无法确认 → 暂停试点</text>
+  <text x="922" y="620" font-size="10.5" fill="#A2762F">默认通过视为缺陷</text>
+
+  <line x1="146" y1="628" x2="146" y2="644" stroke="#4A6B57" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- ===== L6 审计与留存层 ===== -->
+  <rect x="56" y="644" width="180" height="72" rx="10" fill="#F4F8F4" stroke="#B9CDBB" stroke-width="1.2"/>
+  <text x="70" y="664" font-size="10.5" fill="#6B7C70">L6</text>
+  <text x="98" y="665" font-size="13.5" font-weight="700" fill="#1F2A24">审计与留存层</text>
+  <text x="70" y="686" font-size="11" fill="#42544A">四要素留痕</text>
+  <text x="70" y="704" font-size="11" fill="#42544A">脱敏 · 可删除</text>
+
+  <rect x="252" y="644" width="640" height="72" rx="8" fill="#FFFFFF" stroke="#DCE5DC" stroke-width="1.2"/>
+  <text x="268" y="668" font-size="11.5" fill="#2B3A31">留存「谁查过 / 用的哪一版 / 提了什么建议 / 谁确认」；原始版本、修订原因、确认人可追溯</text>
+  <text x="268" y="690" font-size="11.5" fill="#2B3A31">日志脱敏，不落原始个人字段；练习结束按项目约定删除虚构个人字段</text>
+  <text x="268" y="708" font-size="10.5" fill="#7C8C82">依据：f43 可追溯与到期删除 · f45 不接受只留最终摘要</text>
+
+  <rect x="908" y="644" width="276" height="72" rx="8" fill="#FBF7F0" stroke="#E3D3BC" stroke-width="1.2"/>
+  <text x="922" y="668" font-size="11" fill="#8A5A18">审计写入失败 → 业务操作回滚，</text>
+  <text x="922" y="688" font-size="11" fill="#8A5A18">操作视为未发生</text>
+  <text x="922" y="708" font-size="10.5" fill="#A2762F">不留痕的操作不允许存在</text>
+
+  <!-- ===== 底部：数据流 + 人工节点 + 不做范围 ===== -->
+  <line x1="56" y1="736" x2="1184" y2="736" stroke="#DCE5DC" stroke-width="1"/>
+
+  <text x="56" y="760" font-size="12.5" font-weight="700" fill="#2F6B4F">数据流</text>
+  <text x="120" y="760" font-size="11.5" fill="#42544A">只读导出 → 快照 → 版本与口径 → 规则校验 → 未命中项才走模型 → 缺项清单（带来源）→ 人工复核 → 审计留痕 → 对外只暴露复核后结果</text>
+
+  <text x="56" y="790" font-size="12.5" font-weight="700" fill="#2F4F8A">五个人工节点</text>
+  <rect x="152" y="774" width="150" height="22" rx="11" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="227" y="789" font-size="10.5" fill="#233A63" text-anchor="middle">① 版本有效性判定</text>
+  <rect x="314" y="774" width="150" height="22" rx="11" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="389" y="789" font-size="10.5" fill="#233A63" text-anchor="middle">② 责任归属判定</text>
+  <rect x="476" y="774" width="150" height="22" rx="11" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="551" y="789" font-size="10.5" fill="#233A63" text-anchor="middle">③ 正式结论出具</text>
+  <rect x="638" y="774" width="170" height="22" rx="11" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="723" y="789" font-size="10.5" fill="#233A63" text-anchor="middle">④ 无法确认转人工队列</text>
+  <rect x="820" y="774" width="150" height="22" rx="11" fill="#E7EEF9" stroke="#9CB4DA" stroke-width="1"/>
+  <text x="895" y="789" font-size="10.5" fill="#233A63" text-anchor="middle">⑤ 对外口径确认</text>
+
+  <text x="56" y="824" font-size="12.5" font-weight="700" fill="#B4741E">明确不做</text>
+  <text x="120" y="824" font-size="11.5" fill="#8A5A18">自动办理入职 · 判断用工合法性 · 对外承诺 · 写回业务台账与执行类接口 · 导出未脱敏个人字段 · 统一模板决策（未收敛）</text>
+
+  <text x="56" y="854" font-size="10.5" fill="#9AAAA0">验收口径：抽查 50 单，至少 45 单一次给出完整缺件清单，且每条结果可关联来源与人工复核记录（f02、f42）</text>
+</svg>
